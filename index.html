@@ -6,6 +6,11 @@
   <meta name="author" content="Sauryman Bisen">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>3-D Model Demo</title>
+  
+  <!-- Preload 3D Model Assets for faster loading -->
+  <link rel="preload" href="https://unpkg.com/@splinetool/viewer@1.12.27/build/spline-viewer.js" as="script">
+  <link rel="preload" href="https://prod.spline.design/B06QqMujzV6k8hye/scene.splinecode" as="fetch" crossorigin="anonymous">
+  
   <link rel="stylesheet" href="Model.css">
 </head>
 
@@ -17,19 +22,26 @@
     <header>
       <h1 class="logo">MCODE</h1>
 
-      <nav>
-        <a href="#">COMPANY</a>
-        <a href="#">FEATURES</a>
-        <a href="#">RESOURCES</a>
-        <a href="#">DOCS</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="navMenu">
+        <a href="#" class="nav-link">COMPANY</a>
+        <a href="#" class="nav-link">FEATURES</a>
+        <a href="#" class="nav-link">RESOURCES</a>
+        <a href="#" class="nav-link">DOCS</a>
+        <button class="btn-signing mobile-only" id="btnSigninMobile">SIGN IN</button>
       </nav>
 
-      <button class="btn-signing">SIGNING</button>
+      <button class="btn-signing desktop-only" id="btnSigninDesktop">SIGN IN</button>
     </header>
     <main>
       <div class="content">
         <div class="tag-box">
-          <div class="tag">INSTRODUCING &wedbar;</div>
+          <div class="tag">INTRODUCING |</div>
         </div>
 
         <h1>EMAIL FOR<br>DEVELOPERS</h1>
@@ -40,16 +52,17 @@
         </P>
 
         <div class="buttons">
-          <a href="#" class="btn-get-started">Documentation &gt;</a>
-          <a href="#" class="btn-signing-main">Getstarted &gt;</a>
+          <a href="#" class="btn-get-started" id="btnDocs">Documentation &gt;</a>
+          <a href="#" class="btn-signing-main" id="btnGetStarted">Get Started &gt;</a>
         </div>
       </div>
     </main>
 
-    <spline-viewer class="robot-3d" url="https://prod.spline.design/B06QqMujzV6k8hye/scene.splinecode"></spline-viewer>
+    <spline-viewer class="robot-3d" loading-anim-type="spinner" url="https://prod.spline.design/B06QqMujzV6k8hye/scene.splinecode"></spline-viewer>
   </div>
 
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.27/build/spline-viewer.js"></script>
+  <script src="main.js"></script>
 
 </body>
 
