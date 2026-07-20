@@ -1,69 +1,437 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="author" content="Sauryman Bisen">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3-D Model Demo</title>
+  <title>Developer Email Platform</title>
   
+  <meta name="description" content="The best way to reach real users' inboxes, avoid spam folders, and deliver transactional and marketing emails at scale.">
+
   <!-- Preload 3D Model Assets for faster loading -->
   <link rel="preload" href="https://unpkg.com/@splinetool/viewer@1.12.27/build/spline-viewer.js" as="script">
   <link rel="preload" href="https://prod.spline.design/B06QqMujzV6k8hye/scene.splinecode" as="fetch" crossorigin="anonymous">
-  
-  <link rel="stylesheet" href="Model.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/sections.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+
+  <!-- Phosphor Icons for lightweight SVG icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 
 <body>
-  <img class="image-gradient" src="Square line/gradient.png" alt="gradient">
-  <div class="layer-blur"></div>
+  <!-- Scroll Progress -->
+  <div class="scroll-progress"></div>
 
-  <div class="container">
-    <header>
-      <h1 class="logo">MCODE</h1>
-
-      <button class="mobile-menu-btn" id="mobileMenuBtn">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav id="navMenu">
-        <a href="#" class="nav-link">COMPANY</a>
-        <a href="#" class="nav-link">FEATURES</a>
-        <a href="#" class="nav-link">RESOURCES</a>
-        <a href="#" class="nav-link">DOCS</a>
-        <button class="btn-signing mobile-only" id="btnSigninMobile">SIGN IN</button>
-      </nav>
-
-      <button class="btn-signing desktop-only" id="btnSigninDesktop">SIGN IN</button>
-    </header>
-    <main>
-      <div class="content">
-        <div class="tag-box">
-          <div class="tag">INTRODUCING |</div>
-        </div>
-
-        <h1>EMAIL FOR<br>DEVELOPERS</h1>
-
-        <P class="description">
-          The best way to reach real users' inboxes, avoid spam folders, and deliver transactional and marketing emails
-          at scale.
-        </P>
-
-        <div class="buttons">
-          <a href="#" class="btn-get-started" id="btnDocs">Documentation &gt;</a>
-          <a href="#" class="btn-signing-main" id="btnGetStarted">Get Started &gt;</a>
-        </div>
-      </div>
-    </main>
-
-    <spline-viewer class="robot-3d" loading-anim-type="spinner" url="https://prod.spline.design/B06QqMujzV6k8hye/scene.splinecode"></spline-viewer>
+  <!-- Loader -->
+  <div class="loader-wrapper">
+    <div class="loader-logo">MCODE</div>
+    <div class="progress-bar-container">
+      <div class="progress-bar"></div>
+    </div>
   </div>
 
+  <!-- Background Effects -->
+  <img class="image-gradient" src="Square line/gradient.png" alt="gradient" onerror="this.style.display='none'">
+  <div class="layer-blur"></div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-logo" onclick="window.scrollTo(0,0)">MCODE</div>
+
+    <button class="mobile-menu-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav-links">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#docs" class="nav-link">Docs</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+    </nav>
+
+    <div class="nav-actions">
+      <!-- Search Trigger (Ctrl+K hint) -->
+      <button class="btn btn-secondary desktop-only" data-modal-target="#searchModal" title="Search (Ctrl+K)">
+        <i class="ph ph-magnifying-glass"></i> <span style="font-size: 0.8rem; margin-left:5px">Ctrl K</span>
+      </button>
+      <!-- Theme Toggle -->
+      <div id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+        <div class="theme-toggle-indicator"></div>
+        <div class="theme-toggle-icon moon"><i class="ph ph-moon-fill"></i></div>
+        <div class="theme-toggle-icon sun"><i class="ph ph-sun-fill"></i></div>
+      </div>
+      <button class="btn btn-primary" data-modal-target="#signInModal">Sign In</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero container" id="about">
+    <div class="hero-content reveal reveal-up">
+      <div class="hero-badge">
+        <div class="pulse"></div> INTRODUCING | EMAIL FOR DEVELOPERS
+      </div>
+
+      <h1>
+        Code your emails <br>
+        <span style="color:var(--text-secondary)">Deliver them </span><span class="typing-cursor"></span>
+      </h1>
+
+      <p class="description delay-100">
+        The best way to reach real users' inboxes, avoid spam folders, and deliver transactional and marketing emails at scale using our powerful APIs.
+      </p>
+
+      <div style="display: flex; gap: 1rem;" class="delay-200">
+        <a href="#docs" class="btn btn-secondary">Documentation <i class="ph ph-arrow-right"></i></a>
+        <button class="btn btn-primary" data-modal-target="#signUpModal">Get Started <i class="ph ph-arrow-right"></i></button>
+      </div>
+
+      <div class="hero-stats delay-300">
+        <div class="stat-item">
+          <h3><span class="counter" data-target="120000">0</span>+</h3>
+          <p>Emails Delivered</p>
+        </div>
+        <div class="stat-item">
+          <h3>99.98%</h3>
+          <p>Inbox Rate</p>
+        </div>
+        <div class="stat-item">
+          <h3><span class="counter" data-target="12000">0</span>+</h3>
+          <p>Developers</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keep 3D model, add interactions via CSS/JS -->
+    <div class="model-wrapper reveal reveal-zoom delay-200">
+      <spline-viewer class="robot-3d" loading-anim-type="spinner" url="https://prod.spline.design/B06QqMujzV6k8hye/scene.splinecode"></spline-viewer>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="container" id="features">
+    <div class="section-header reveal reveal-up">
+      <h2>Built for Modern Stacks</h2>
+      <p>Everything you need to send emails that land in the inbox.</p>
+    </div>
+    
+    <div class="features-grid">
+      <!-- Feature Card 1 -->
+      <div class="card reveal reveal-up">
+        <i class="ph ph-paper-plane-tilt" style="font-size: 2rem; color: var(--success); margin-bottom: 1rem;"></i>
+        <h3>Transactional Emails</h3>
+        <p style="color: var(--text-secondary); margin-top: 0.5rem;">Send receipts, password resets, and notifications instantly with our low-latency API.</p>
+      </div>
+      <!-- Feature Card 2 -->
+      <div class="card reveal reveal-up delay-100">
+        <i class="ph ph-envelope-simple-open" style="font-size: 2rem; color: var(--info); margin-bottom: 1rem;"></i>
+        <h3>Marketing Emails</h3>
+        <p style="color: var(--text-secondary); margin-top: 0.5rem;">Manage lists, segments, and campaigns without leaving your codebase.</p>
+      </div>
+      <!-- Feature Card 3 -->
+      <div class="card reveal reveal-up delay-200">
+        <i class="ph ph-code" style="font-size: 2rem; color: var(--warning); margin-bottom: 1rem;"></i>
+        <h3>Email Templates</h3>
+        <p style="color: var(--text-secondary); margin-top: 0.5rem;">Use React, Vue, or raw HTML to build beautiful, responsive email templates.</p>
+      </div>
+      <!-- Feature Card 4 -->
+      <div class="card reveal reveal-up">
+        <i class="ph ph-chart-line-up" style="font-size: 2rem; color: #a855f7; margin-bottom: 1rem;"></i>
+        <h3>Analytics Dashboard</h3>
+        <p style="color: var(--text-secondary); margin-top: 0.5rem;">Track opens, clicks, bounces, and complaints in real-time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Email Playground -->
+  <section class="container" id="playground">
+    <div class="section-header reveal reveal-up">
+      <h2>Live Email Playground</h2>
+      <p>Test our API right from your browser. No backend required for this demo.</p>
+    </div>
+
+    <div class="playground-container reveal reveal-up">
+      <div>
+        <form id="emailForm">
+          <div class="form-group">
+            <label class="form-label">Recipient</label>
+            <input type="email" id="recipient" class="form-input" placeholder="user@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <input type="text" id="subject" class="form-input" placeholder="Welcome to MCODE!" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea id="message" class="form-input" rows="5" placeholder="Hi there, thanks for signing up..." required></textarea>
+          </div>
+          <button type="submit" id="btnSendEmail" class="btn btn-primary" style="width: 100%;">
+            Send Email
+          </button>
+        </form>
+      </div>
+      <div class="fake-editor">
+        <div style="color: var(--text-muted); margin-bottom: 1rem;">// JSON Payload Preview</div>
+        <pre><code style="color: #10b981;">{
+  "from": "Acme &lt;onboarding@mcode.dev&gt;",
+  <span style="color:#3b82f6">"to"</span>: [<span id="code-to" style="color:var(--text-primary)">"user@example.com"</span>],
+  <span style="color:#3b82f6">"subject"</span>: <span id="code-subject" style="color:var(--text-primary)">"Welcome to MCODE!"</span>,
+  <span style="color:#3b82f6">"html"</span>: <span id="code-message" style="color:var(--text-primary)">"&lt;p&gt;Hi there...&lt;/p&gt;"</span>
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Analytics & Carousel & FAQ ... Simplified structure to avoid massive file -->
+  
+  <section class="container" id="analytics">
+    <div class="section-header reveal reveal-up" style="text-align: left; margin-bottom: var(--space-lg);">
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Email Performance</h2>
+      <p style="font-size: 1rem;">Real-time metrics and delivery logs across your infrastructure.</p>
+    </div>
+
+    <!-- Top Row: Metrics -->
+    <div class="dashboard-metrics reveal reveal-up delay-100">
+      <div class="dashboard-card metric-card">
+        <div class="card-header">
+          <span class="card-title">Delivery Rate</span>
+          <i class="ph ph-check-circle" style="color: var(--success);"></i>
+        </div>
+        <div class="metric-value"><span class="counter" data-target="99.82">0</span>%</div>
+        <div class="metric-trend success"><i class="ph ph-trend-up"></i> 0.04% this week</div>
+      </div>
+      <div class="dashboard-card metric-card">
+        <div class="card-header">
+          <span class="card-title">Open Rate</span>
+          <i class="ph ph-envelope-open" style="color: var(--info);"></i>
+        </div>
+        <div class="metric-value"><span class="counter" data-target="54.70">0</span>%</div>
+        <div class="metric-trend success"><i class="ph ph-trend-up"></i> 2.1% this week</div>
+      </div>
+      <div class="dashboard-card metric-card">
+        <div class="card-header">
+          <span class="card-title">Click Rate</span>
+          <i class="ph ph-cursor-click" style="color: var(--accent-primary);"></i>
+        </div>
+        <div class="metric-value"><span class="counter" data-target="8.30">0</span>%</div>
+        <div class="metric-trend warning"><i class="ph ph-trend-down"></i> 0.2% this week</div>
+      </div>
+      <div class="dashboard-card metric-card">
+        <div class="card-header">
+          <span class="card-title">Spam Rate</span>
+          <i class="ph ph-warning-circle" style="color: var(--error);"></i>
+        </div>
+        <div class="metric-value"><span class="counter" data-target="0.04">0</span>%</div>
+        <div class="metric-trend success"><i class="ph ph-trend-down"></i> 0.01% this week</div>
+      </div>
+    </div>
+
+    <!-- Middle Row: Chart & Campaigns -->
+    <div class="dashboard-layout reveal reveal-up delay-200">
+      <!-- Left: Chart -->
+      <div class="dashboard-card chart-section">
+        <div class="card-header border-bottom">
+          <h3 class="card-title-lg">Weekly Email Overview</h3>
+          <span class="status-badge info">Last 7 Days</span>
+        </div>
+        <div class="chart-wrapper">
+          <div class="y-axis">
+            <span>2.0M</span>
+            <span>1.5M</span>
+            <span>1.0M</span>
+            <span>0.5M</span>
+            <span>0</span>
+          </div>
+          <div class="chart-area">
+            <div class="chart-grid">
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+            </div>
+            <div class="bars-container">
+              <div class="bar-group" data-tooltip="Mon: 1.2M sent">
+                <div class="bar" data-height="60"></div>
+                <span class="x-label">Mon</span>
+              </div>
+              <div class="bar-group" data-tooltip="Tue: 1.5M sent">
+                <div class="bar" data-height="75"></div>
+                <span class="x-label">Tue</span>
+              </div>
+              <div class="bar-group" data-tooltip="Wed: 1.8M sent">
+                <div class="bar" data-height="90"></div>
+                <span class="x-label">Wed</span>
+              </div>
+              <div class="bar-group" data-tooltip="Thu: 1.4M sent">
+                <div class="bar" data-height="70"></div>
+                <span class="x-label">Thu</span>
+              </div>
+              <div class="bar-group" data-tooltip="Fri: 1.9M sent">
+                <div class="bar" data-height="95"></div>
+                <span class="x-label">Fri</span>
+              </div>
+              <div class="bar-group" data-tooltip="Sat: 0.8M sent">
+                <div class="bar" data-height="40"></div>
+                <span class="x-label">Sat</span>
+              </div>
+              <div class="bar-group" data-tooltip="Sun: 0.6M sent">
+                <div class="bar" data-height="30"></div>
+                <span class="x-label">Sun</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Campaigns -->
+      <div class="dashboard-card campaigns-section">
+        <div class="card-header border-bottom">
+          <h3 class="card-title-lg">Recent Campaigns</h3>
+        </div>
+        <div class="campaign-list">
+          <div class="campaign-item">
+            <div class="campaign-info">
+              <h4>July Newsletter</h4>
+              <span class="campaign-date">Today, 09:00 AM</span>
+            </div>
+            <div class="campaign-stats">
+              <span class="status-badge success">Sent</span>
+              <span class="campaign-metric">142K</span>
+            </div>
+          </div>
+          <div class="campaign-item">
+            <div class="campaign-info">
+              <h4>OTP Authentication</h4>
+              <span class="campaign-date">Ongoing</span>
+            </div>
+            <div class="campaign-stats">
+              <span class="status-badge info">Active</span>
+              <span class="campaign-metric">89K</span>
+            </div>
+          </div>
+          <div class="campaign-item">
+            <div class="campaign-info">
+              <h4>Developer API Update</h4>
+              <span class="campaign-date">Yesterday</span>
+            </div>
+            <div class="campaign-stats">
+              <span class="status-badge success">Sent</span>
+              <span class="campaign-metric">210K</span>
+            </div>
+          </div>
+          <div class="campaign-item">
+            <div class="campaign-info">
+              <h4>Welcome Series</h4>
+              <span class="campaign-date">Automated</span>
+            </div>
+            <div class="campaign-stats">
+              <span class="status-badge warning">Paused</span>
+              <span class="campaign-metric">12K</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">MCODE</h2>
+          <p style="color:var(--text-secondary); margin-bottom:1rem;">The email platform for developers.</p>
+          <div style="display:flex; gap:1rem; font-size:1.5rem;">
+            <i class="ph ph-github-logo"></i>
+            <i class="ph ph-twitter-logo"></i>
+            <i class="ph ph-linkedin-logo"></i>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Product</h3>
+          <ul class="footer-links">
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">API Reference</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <ul class="footer-links">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Privacy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 MCODE. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modals -->
+  <!-- Search Modal -->
+  <div class="modal-overlay" id="searchModal">
+    <div class="modal-content" style="padding-top: 3rem;">
+      <button class="modal-close"><i class="ph ph-x"></i></button>
+      <input type="text" id="searchInput" class="form-input" placeholder="Search templates, features, docs..." style="font-size: 1.2rem;">
+      <div id="searchResults" style="margin-top: 1rem; max-height: 200px; overflow-y: auto;">
+        <div class="search-item" style="padding: 0.5rem; border-bottom: 1px solid var(--border-light);">Transactional Emails</div>
+        <div class="search-item" style="padding: 0.5rem; border-bottom: 1px solid var(--border-light);">Authentication Templates</div>
+        <div class="search-item" style="padding: 0.5rem; border-bottom: 1px solid var(--border-light);">Webhooks Documentation</div>
+        <div class="search-item" style="padding: 0.5rem; border-bottom: 1px solid var(--border-light);">Pricing Plans</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign In Modal -->
+  <div class="modal-overlay" id="signInModal">
+    <div class="modal-content">
+      <button class="modal-close"><i class="ph ph-x"></i></button>
+      <h2 style="margin-bottom: 1.5rem; text-align: center;">Welcome Back</h2>
+      <form onsubmit="event.preventDefault(); this.closest('.modal-overlay').classList.remove('active');">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="backToTop" style="position: fixed; bottom: 20px; right: 20px; background: var(--bg-tertiary); padding: 15px; border-radius: 50%; cursor: pointer; z-index: 1000; border: 1px solid var(--border-strong); opacity: 0; pointer-events: none; transition: 0.3s; display:flex; align-items:center; justify-content:center;">
+    <i class="ph ph-arrow-up"></i>
+  </div>
+  <style>
+    #backToTop.visible { opacity: 1; pointer-events: all; }
+  </style>
+
+  <!-- Scripts -->
+  <script type="module" src="assets/js/main.js"></script>
+  <!-- Spline -->
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.27/build/spline-viewer.js"></script>
-  <script src="main.js"></script>
-
 </body>
-
 </html>
