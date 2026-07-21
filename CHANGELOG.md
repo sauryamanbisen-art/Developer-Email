@@ -11,3 +11,4 @@
 - docs: outline future steps for analytics dashboard integration
 - chore: optimize asset loading order documentation
 - chore: finalize push preparation for v1.0.1 release
+- chore: update project versioning in changelog
