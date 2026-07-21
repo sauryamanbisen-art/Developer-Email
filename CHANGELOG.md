@@ -4,3 +4,4 @@
 - style: minor formatting adjustments in documentation
 - chore: prepare repository for GitHub Pages deployment
 - docs: document recent UI alignment corrections
+- refactor(css): consolidate z-index layers in documentation
