@@ -3,3 +3,4 @@
 - docs: add notes on JavaScript loading sequence fixes
 - style: minor formatting adjustments in documentation
 - chore: prepare repository for GitHub Pages deployment
+- docs: document recent UI alignment corrections
