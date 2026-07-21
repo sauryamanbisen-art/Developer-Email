@@ -1,0 +1,1 @@
+- docs: update CHANGELOG with recent modal implementations
