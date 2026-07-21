@@ -89,7 +89,7 @@
       </p>
 
       <div style="display: flex; gap: 1rem;" class="delay-200">
-        <a href="#docs" class="btn btn-secondary">Documentation <i class="ph ph-arrow-right"></i></a>
+        <button class="btn btn-secondary" data-modal-target="#docsModal">Documentation <i class="ph ph-arrow-right"></i></button>
         <button class="btn btn-primary" data-modal-target="#signUpModal">Get Started <i class="ph ph-arrow-right"></i></button>
       </div>
 
@@ -192,7 +192,7 @@
   <!-- Analytics & Carousel & FAQ ... Simplified structure to avoid massive file -->
   
   <section class="container" id="analytics">
-    <div class="section-header reveal reveal-up" style="text-align: left; margin-bottom: var(--space-lg);">
+    <div class="section-header reveal reveal-up" style="margin-bottom: var(--space-lg);">
       <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Email Performance</h2>
       <p style="font-size: 1rem;">Real-time metrics and delivery logs across your infrastructure.</p>
     </div>
@@ -419,6 +419,59 @@
         </div>
         <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Sign In</button>
       </form>
+    </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <div class="modal-overlay" id="signUpModal">
+    <div class="modal-content">
+      <button class="modal-close"><i class="ph ph-x"></i></button>
+      <h2 style="margin-bottom: 1.5rem; text-align: center;">Create an Account</h2>
+      <form onsubmit="event.preventDefault(); this.closest('.modal-overlay').classList.remove('active');">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-input" placeholder="Saurya Bisen" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="saurya@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Create Account</button>
+        <p style="text-align: center; margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+          Already have an account? <a href="#" style="color: var(--accent-primary);" onclick="document.getElementById('signUpModal').classList.remove('active'); document.getElementById('signInModal').classList.add('active'); return false;">Sign In</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Docs Modal -->
+  <div class="modal-overlay" id="docsModal">
+    <div class="modal-content" style="max-width: 700px;">
+      <button class="modal-close"><i class="ph ph-x"></i></button>
+      <h2 style="margin-bottom: 1rem;">Quick Start Guide</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Get up and running with MCODE in minutes.</p>
+      
+      <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-light); margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--accent-primary);">1. Install the SDK</h3>
+        <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 6px; overflow-x: auto; color: var(--text-primary); border: 1px solid var(--border-strong);"><code>npm install @mcode/node</code></pre>
+      </div>
+
+      <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-light);">
+        <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--info);">2. Send your first email</h3>
+        <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 6px; overflow-x: auto; border: 1px solid var(--border-strong);"><code style="color: #10b981;">import { MCode } from '@mcode/node';
+
+         const mcode = new MCode('YOUR_API_KEY');
+         await mcode.emails.send({
+           from: 'you@example.com',
+           to: 'user@example.com',
+           subject: 'Hello World',
+           html: '&lt;p&gt;Congrats on sending your first email!&lt;/p&gt;'
+         });</code></pre>
+      </div>
     </div>
   </div>
 
