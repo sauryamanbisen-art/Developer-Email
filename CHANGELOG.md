@@ -1,2 +1,3 @@
 - docs: update CHANGELOG with recent modal implementations
 - docs: update CHANGELOG with CSS clipping fixes
+- docs: add notes on JavaScript loading sequence fixes
