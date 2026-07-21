@@ -7,3 +7,4 @@
 - refactor(css): consolidate z-index layers in documentation
 - chore: verify responsive grid breakpoints for new modals
 - docs: add notes on 3D Spline model integration
+- chore: final polish of UI micro-interactions
