@@ -2,3 +2,4 @@
 - docs: update CHANGELOG with CSS clipping fixes
 - docs: add notes on JavaScript loading sequence fixes
 - style: minor formatting adjustments in documentation
+- chore: prepare repository for GitHub Pages deployment
