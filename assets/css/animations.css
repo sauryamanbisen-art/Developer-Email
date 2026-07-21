@@ -25,6 +25,7 @@
   letter-spacing: 2px;
   margin-bottom: 1rem;
   background: var(--accent-gradient);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: float 3s ease-in-out infinite;
