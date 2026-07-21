@@ -10,3 +10,4 @@
 - chore: final polish of UI micro-interactions
 - docs: outline future steps for analytics dashboard integration
 - chore: optimize asset loading order documentation
+- chore: finalize push preparation for v1.0.1 release
