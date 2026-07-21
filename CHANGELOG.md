@@ -9,3 +9,4 @@
 - docs: add notes on 3D Spline model integration
 - chore: final polish of UI micro-interactions
 - docs: outline future steps for analytics dashboard integration
+- chore: optimize asset loading order documentation
