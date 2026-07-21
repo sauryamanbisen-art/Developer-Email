@@ -5,3 +5,4 @@
 - chore: prepare repository for GitHub Pages deployment
 - docs: document recent UI alignment corrections
 - refactor(css): consolidate z-index layers in documentation
+- chore: verify responsive grid breakpoints for new modals
